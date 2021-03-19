@@ -173,7 +173,8 @@
                             <field name="partner_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'supplier', 'show_vat': True}"
                                 placeholder="Name, TIN, Email, or Reference"
                             />
-                            <field name="partner_ref"/>
+                            <field name="partner_ref" invisible="0"/>
+                            <field name="x_po_internal"/>
                             <field name="currency_id" groups="base.group_multi_currency" force_save="1"/>
                             <field name="id" invisible="1"/>
                         </group>
@@ -197,7 +198,7 @@
                                 <span>Ask confirmation</span>
                                 <div class="o_row oe_inline" attrs="{'invisible': [('receipt_reminder_email', '=', False)]}">
                                     <field name="reminder_date_before_receipt" class="oe_inline"/>
-                                    day(s) before 
+                                    day(s) before
                                     <widget name='toaster_button' button_name="send_reminder_preview" title="Preview the reminder email by sending it to yourself." attrs="{'invisible': [('id', '=', False)]}"/>
                                 </div>
                             </div>
@@ -534,7 +535,7 @@
                 </tree>
             </field>
         </record>
-        
+
         <!-- Unfortunately we want the purchase kpis table to only show up in some list views,
              so we have to duplicate code to support both view versions -->
         <record id="purchase_order_kpis_tree" model="ir.ui.view">
@@ -765,7 +766,7 @@
                 action = records._send_reminder_mail(send_single=True)
         </field>
     </record>
-    
+
     <!-- Dashboard action buttons -->
     <!-- Dashboard action buttons: End in List view -->
     <record id="purchase_action_dashboard_list" model="ir.actions.act_window">
